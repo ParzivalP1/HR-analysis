@@ -18,6 +18,9 @@ repositories {
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+	// new one
+	implementation("org.springframework.data:spring-data-keyvalue")
 }
 
 tasks.withType<Test> {
