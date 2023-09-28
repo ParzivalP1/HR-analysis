@@ -1,4 +1,4 @@
-package ru.nikitakuts.menu.item;
+package ru.nikitakuts.menu.vacancy;
 
 
 import org.springframework.http.ResponseEntity;
@@ -20,31 +20,31 @@ import jakarta.validation.Valid;
 
 
 @RestController
-@RequestMapping("api/menu/items")
-public class ItemController {
-    private final ItemService service;
+@RequestMapping("api/menu/vacancies")
+public class VacancyController {
+    private final VacancyService service;
 
-    public ItemController(ItemService service) {
+    public VacancyController(VacancyService service) {
         this.service = service;
     }
 
 
     @GetMapping
-    public ResponseEntity<List<Item>> findAll() {
-        List<Item> items = service.findAll();
-        return ResponseEntity.ok().body(items);
+    public ResponseEntity<List<Vacancy>> findAll() {
+        List<Vacancy> vacancies = service.findAll();
+        return ResponseEntity.ok().body(vacancies);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Item> find(@PathVariable("id") Long id) {
-        Optional<Item> item = service.find(id);
-        return ResponseEntity.of(item);
+    public ResponseEntity<Vacancy> find(@PathVariable("id") Long id) {
+        Optional<Vacancy> vacancy = service.find(id);
+        return ResponseEntity.of(vacancy);
     }
 
 
     @PostMapping
-    public ResponseEntity<Item> create(@Valid @RequestBody Item item) {
-        Item created = service.create(item);
+    public ResponseEntity<Vacancy> create(@Valid @RequestBody Vacancy vacancy) {
+        Vacancy created = service.create(vacancy);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(created.getId())
@@ -54,16 +54,16 @@ public class ItemController {
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<Item> update(
+    public ResponseEntity<Vacancy> update(
             @PathVariable("id") Long id,
-            @Valid @RequestBody Item updatedItem) {
+            @Valid @RequestBody Vacancy updatedVacancy) {
 
-        Optional<Item> updated = service.update(id, updatedItem);
+        Optional<Vacancy> updated = service.update(id, updatedVacancy);
 
         return updated
                 .map(value -> ResponseEntity.ok().body(value))
                 .orElseGet(() -> {
-                    Item created = service.create(updatedItem);
+                    Vacancy created = service.create(updatedVacancy);
                     URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                             .path("/{id}")
                             .buildAndExpand(created.getId())
@@ -74,7 +74,7 @@ public class ItemController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Item> delete(@PathVariable("id") Long id) {
+    public ResponseEntity<Vacancy> delete(@PathVariable("id") Long id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }

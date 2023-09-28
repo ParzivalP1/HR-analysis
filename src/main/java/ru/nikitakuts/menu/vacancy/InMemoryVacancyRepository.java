@@ -1,8 +1,8 @@
-package ru.nikitakuts.menu.item;
+package ru.nikitakuts.menu.vacancy;
 
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface InMemoryItemRepository extends CrudRepository<Item, Long> {}
+public interface InMemoryVacancyRepository extends CrudRepository<Vacancy, Long> {}

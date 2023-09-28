@@ -22,6 +22,8 @@ dependencies {
 	// new one
 	implementation("org.springframework.data:spring-data-keyvalue")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
+
+	implementation("org.htmlunit:htmlunit:3.5.0")
 }
 
 tasks.withType<Test> {
